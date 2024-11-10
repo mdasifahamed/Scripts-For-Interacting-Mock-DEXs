@@ -78,3 +78,40 @@ async function AddLiquidity(tokenA, tokenB, dexAddress) {
 ```javascript
 const deadLine = Math.floor(Date.now() / 1000 + 60 \* 2);
 ```
+
+## AddLiquidityWithETH.js
+
+This scrtips will automate your task for adding liqiuidity and creating pool for a token against eth to the multiple DEX's.
+
+### Must Be Consirered Scopes While Using This Scritp:
+
+- `process.env.PRIVATE_KEY` the account that is used here must hold the desired amount of both tokens those are going to be used to create pool pair and going to liquid the DEX for trading.
+
+This `amount` which represent amount of tokens a user want to created pool and add liquidity to a dexs the account that is going to create the liquidity pool must be hold by this `process.env.PRIVATE_KEY` account. In the example `3000` is used. One must adjust this amount/number according to their holding and need for creating liquidity pool. And this Amount hold the amount of the eth that is quoted here `amountOfTheEtherToSend`.
+
+```javascript
+const amount = ethers.parseUnits("3000", "ether");
+const amountOfTheEtherToSend = ethers.parseUnits("0.15", "ether");
+```
+
+- This `token_address` which represent the token must be approved to all the DEX's with the same amount of `amount` this.
+
+DES's this have this amount of the tokens.
+
+```javascript
+const amount = ethers.parseUnits("3000", "ether");
+```
+
+For This tokens `token`.
+
+```javascript
+async function AddLiquidityWithEth(token_address, dex_address) {
+  // rest of the code
+}
+```
+
+- `deadLine` This must be greater than `block.timestamp` and must be in unix format.
+
+```javascript
+const deadLine = Math.floor(Date.now() / 1000 + 60 \* 2);
+```
