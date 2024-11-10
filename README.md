@@ -14,6 +14,27 @@ PRIVATE_KEY = "your account private key";
 ETHERSCAN_API_KEY = "your etherscan api key";
 ```
 
+- Contract method must set accoring to the dex's in the contract call like here is used `addLiquidityETH` and `addLiquidity`
+
+```javascript
+// In the AddLiquidityWithETH.js
+// In AddLiquidityWithEth()
+const trx = await dexContract
+  .connect(wallet)
+  .addLiquidityETH // like this `addLiquidityETH` method should be adjusted according to your dex contract .
+  //rest of the parameter and code
+  ();
+
+// Also in AddLiquidityWithTokensToTokens.js
+// In AddLiquidity()
+
+const trx = await contract
+  .connect(wallet)
+  .addLiquidity // like this `addLiquidity` method should be adjusted according to your dex contract .
+  //rest of the parameter and code
+  ();
+```
+
 ## ContractAddresses.json
 
 This is json file which contains the addresses of the token and dex.From where you can access the addresses in your any scripts rather than hardcoding them repeatedly.
@@ -57,9 +78,9 @@ This `amount` which represent amount of tokens a user want to created pool and a
 const amount = ethers.parseUnits("3000", "ether");
 ```
 
-- Those `tokenA` And `tokenB` must be approved to all the DEX's with the same amount of `amount` this.
+- Those `tokenA` And `tokenB` must be approved to all the DEX's with the same amount of `amount` this. **Hint:** Use `ApproveToDexs.js`
 
-DES's this have this amount of the tokens.
+DEX's must have this amount of the tokens approval.
 
 ```javascript
 const amount = ethers.parseUnits("3000", "ether");
@@ -94,9 +115,9 @@ const amount = ethers.parseUnits("3000", "ether");
 const amountOfTheEtherToSend = ethers.parseUnits("0.15", "ether");
 ```
 
-- This `token_address` which represent the token must be approved to all the DEX's with the same amount of `amount` this.
+- This `token_address` which represent the token must be approved to all the DEX's with the same amount of `amount` this. **Hint:** Use `ApproveToDexs.js`
 
-DES's this have this amount of the tokens.
+DEX's must have this amount of the tokens approval.
 
 ```javascript
 const amount = ethers.parseUnits("3000", "ether");
