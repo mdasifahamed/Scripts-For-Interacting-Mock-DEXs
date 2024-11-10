@@ -19,7 +19,7 @@ const amount = ethers.parseUnits("3000", "ether");
 const deadLine = Math.floor(Date.now() / 1000 + 60 * 2);
 
 /**
- * ApproveTokens()
+ * AddLiquidity()
  * Adds Liquidity in The dex And Also  Creates Pool
  * @param tokenA Address Of The Token0
  * @param tokenB Address Of The Token1
@@ -35,18 +35,17 @@ async function AddLiquidity(tokenA, tokenB, dexAddress) {
   try {
     // Pool Creation And Liquidity Adding Starts From Here
     console.log("Adding Liquidity Started ");
-    const trx = await contract
-      .connect(wallet)
-      .addLiquidity(
-        tokenA,
-        tokenB,
-        amount,
-        amount,
-        0,
-        0,
-        wallet.address,
-        deadLine
-      );
+    const trx = await contract.connect(wallet).addLiquidity(
+      // Function name of the dex's contract which is used to adding liquidity for token for token
+      tokenA,
+      tokenB,
+      amount,
+      amount,
+      0,
+      0,
+      wallet.address,
+      deadLine
+    );
     await trx.wait();
     console.log(
       `Liquidity Added With Token = ${tokenA} Against Token = ${tokenB}`
